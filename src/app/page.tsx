@@ -9,7 +9,12 @@ import {
 import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import Link from "next/link";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+
+// import { promises as fs } from 'fs';
+
+// const file = await fs.readFile(process.cwd() + '/src/app/teams.json', 'utf8');
+// const data = JSON.parse(file);
 // const fs = require('fs');
 
 // // Load the JSON data from the file
@@ -56,6 +61,20 @@ export default function Page() {
     imageLink:"",
   });
 
+  const [teams, setTeams] = useState([]);
+
+  // useEffect(() => {
+  //   // Fetch the teams data from the API route
+  //   fetch('/api/read-teams')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setTeams(data.teams)
+  //       console.log(teams)
+  //     })
+  //     .catch((error) => console.error('Error fetching teams:', error));
+  // }, []);
+  // console.log(teams)
+
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData({
@@ -89,16 +108,34 @@ export default function Page() {
     // }
 
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
+      const response1 = await fetch('http://localhost:5000/api/teams');
       
-
+      if (!response1.ok) {
+        throw new Error(`Error fetching teams: ${response1.statusText}`);
+      }
+      const data = await response1.json();
+      console.log("yo1")
+      console.log(data.data[formData.teamName] )
+      console.log("yo2")
+      console.log( data.data[formData.teamName].password)
+      console.log("yo3")
+      console.log(formData.password)
+      console.log("yo4")
+      // console.log(`${formData.teamName} ${data[formData.teamName].password} ${formData.password}`)
+      // console.log("yo5")
+      // Check if the team name and password match
+      if(data.data[formData.teamName]){
+        console.log("yo42")
+      if (data.data[formData.teamName].password == formData.password) {
+        console.log("yo45")
+        const response = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          
+        });
       if (response.status === 201) {
         const data = await response.json();
         console.log("User registered:", data.user);
@@ -111,12 +148,20 @@ export default function Page() {
         }
       } else {
         console.error("Registration failed:", response.statusText);
-      }
+      }}
       // await edgestore.myPublicImages.upload({  // Use myPublicImages here
       //   file,
       // });
-
-      
+      else{
+        setValidationErrors({
+          teamName: "Team name and password do not match.",
+          password: "Team name and password do not match.",
+        });
+      }}else{
+        setValidationErrors({
+          teamName: "Team name not found.",
+        });
+      }
     } catch (error) {
       console.error("Error during registration:", error);
     } finally {
