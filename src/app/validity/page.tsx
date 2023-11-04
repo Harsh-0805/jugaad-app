@@ -1,24 +1,8 @@
 "use client";
 
-// pages/invalid-users.tsx
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const refreshInvalidUsers = () => {
-  axios
-    .get("/api/verify") // Adjust the URL as needed
-    .then((response) => {
-      setInvalidUsers(response.data.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching invalid users:", error);
-    });
-};
-
-// const markAsVerified = (userId: any) => {
-//   console.log(userId);
-//   // Send a POST request to update the user's isVerified property
 //   axios
 //     .post(`/api/update/${userId}`, null, {
 //       headers: {
@@ -26,42 +10,45 @@ const refreshInvalidUsers = () => {
 //       },
 //     })
 //     .then(() => {
+//       console.log("User verified successfully.");
 //       // Remove the user from the invalidUsers state
-//       refreshInvalidUsers();
+//       setInvalidUsers((prevInvalidUsers: any[]) =>
+//         prevInvalidUsers.filter((user) => user._id !== userId)
+//       );
 //     })
 //     .catch((error) => {
 //       console.error("Error marking as verified:", error);
 //     });
 // };
 
-const markAsVerified = (userId: any) => {
-  console.log("Verifying user with ID:", userId);
-
-  axios
-    .post(`/api/update/${userId}`, null, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(() => {
-      console.log("User verified successfully.");
-      // Remove the user from the invalidUsers state
-      setInvalidUsers((prevInvalidUsers: any[]) =>
-        prevInvalidUsers.filter((user) => user._id !== userId)
-      );
-    })
-    .catch((error) => {
-      console.error("Error marking as verified:", error);
-    });
-};
-
 const InvalidUsersPage: React.FC = () => {
   const [invalidUsers, setInvalidUsers] = useState<any[]>([]);
+
+  const markAsVerified = (userId: any) => {
+    console.log("Verifying user with ID:", userId);
+
+    axios
+      .post(`/api/update/${userId}`, null, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(() => {
+        console.log("User verified successfully.");
+        // Remove the user from the invalidUsers state
+        setInvalidUsers((prevInvalidUsers: any[]) =>
+          prevInvalidUsers.filter((user) => user._id !== userId)
+        );
+      })
+      .catch((error) => {
+        console.error("Error marking as verified:", error);
+      });
+  };
 
   useEffect(() => {
     // Make an HTTP GET request to fetch invalid users
     axios
-      .get("/api/verify") // Adjust the URL as needed
+      .get("/api/verify")
       .then((response) => {
         setInvalidUsers(response.data.data);
       })
@@ -120,6 +107,3 @@ const InvalidUsersPage: React.FC = () => {
 };
 
 export default InvalidUsersPage;
-function setInvalidUsers(data: any) {
-  throw new Error("Function not implemented.");
-}
