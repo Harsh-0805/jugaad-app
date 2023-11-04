@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "target": "es6", // or "es2015" or higher
-    "downlevelIteration": true
+    "downlevelIteration": true,
     // ... other compiler options
-    ,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "baseUrl": "./src", // Your base directory
+    "paths": {
+      "@/*": ["*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -33,7 +32,5 @@
     ".next/types/**/*.ts",
     "libs/mongodb.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
