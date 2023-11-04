@@ -16,7 +16,6 @@ import "./globals.css";
 import { Route } from "next";
 // import Leaderboard from "@/components/leaderboard";
 
-
 // import { promises as fs } from 'fs';
 
 // const file = await fs.readFile(process.cwd() + '/src/app/teams.json', 'utf8');
@@ -202,8 +201,13 @@ export default function Page() {
 
   if (isSubmitted) {
     return (
-      <div className="flex background flex-col items-center">
-        <h1 className="text-white font-bold text-3xl mt-2">Registration successful</h1>
+      <div className="flex background h-screen flex-col items-center">
+        <h1 className="text-white font-bold text-3xl mt-2">
+          Registration successful
+        </h1>
+        <button className="shadow bg-orange-400 hover:bg-orange-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ">
+          <a href="/leader">Leaderboard</a>
+        </button>
         {/* <Leaderboard data={...data} /> */}
       </div>
     );
@@ -226,7 +230,7 @@ export default function Page() {
             height={200}
             value={file}
             dropzoneOptions={{
-              maxSize: 1024 * 1024 * 1, // 1MB
+              maxSize: 1024 * 1024 * 5, // 1MB
             }}
             onChange={(file) => {
               setFile(file);
