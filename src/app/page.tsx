@@ -280,7 +280,7 @@ export default function Page() {
   if (isSubmitted) {
     return (
       <div className="flex background flex-col items-center">
-        <h1 className="text-white font-bold text-2xl mt-2">Leaderboard</h1>
+        <h1 className="text-white font-bold text-3xl mt-2">Leaderboard</h1>
         <Leaderboard data={...data} />
       </div>
     );
@@ -366,11 +366,11 @@ export default function Page() {
                 <div className="m-[auto] max-w-xs">
                   <form
                     onSubmit={handleSubmit}
-                    className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                    className=" shadow-md rounded px-8 pt-6 pb-8 mb-4"
                   >
                     {/* Team Name */}
-                    <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <div className="mb-4 text-white">
+                      <label className="block text-white text-sm font-bold mb-2">
                         Team Name:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -393,7 +393,7 @@ export default function Page() {
 
                     {/* Password */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-white text-sm font-bold mb-2">
                         Password:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -416,7 +416,7 @@ export default function Page() {
 
                     {/* Profit/Loss */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-white text-sm font-bold mb-2">
                         Profit/Loss:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -439,7 +439,7 @@ export default function Page() {
 
                     {/* Description */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-white text-sm font-bold mb-2">
                         Description:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -462,7 +462,7 @@ export default function Page() {
 
                     {/* Total Money */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-white text-sm font-bold mb-2">
                         Total Money:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
