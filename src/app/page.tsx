@@ -205,9 +205,9 @@ export default function Page() {
         <h1 className="text-white font-bold text-3xl mt-2">
           Registration successful
         </h1>
-        // <button className="shadow  bg-orange-400 hover:bg-orange-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ">
-          // <a href="/leader">Leaderboard</a>
-        // </button>
+{/*          <button className="shadow  bg-orange-400 hover:bg-orange-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ">
+          <a href="/leader">Leaderboard</a>
+        </button> */}
         {/* <Leaderboard data={...data} /> */}
       </div>
     );
