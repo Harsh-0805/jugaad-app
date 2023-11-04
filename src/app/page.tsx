@@ -10,6 +10,8 @@ import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import jugaad from "./jugaadnew.png";
 
 // import { promises as fs } from 'fs';
 
@@ -202,7 +204,12 @@ export default function Page() {
   }
 
   return (
-    <div className="grid grid-cols-1 justify-center items-center m-6">
+    <div className="grid grid-cols-1 items-center m-6">
+      <Image
+        src={jugaad}
+        alt="jugaad"
+        className="items-center justify-center"
+      />
       <div className="gap-4 justify-center items-center">
         <div className="justify-center text-center items-center">
           <SingleImageDropzone
@@ -215,9 +222,9 @@ export default function Page() {
             onChange={(file) => {
               setFile(file);
             }}
-            className="justify-center items-center my-2"
+            className="justify-center items-center left-[25%] my-2"
           />
-          <div className="h-[6px] justify-center items-center w-44 border rounded overflow-hidden my-2">
+          <div className="h-[6px] border rounded overflow-hidden my-2">
             <div
               className="h-full bg-white transition-all duration-150"
               style={{
@@ -273,11 +280,11 @@ export default function Page() {
                 <div className="m-[auto] max-w-xs">
                   <form
                     onSubmit={handleSubmit}
-                    className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                    className="text-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
                   >
                     {/* Team Name */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-sm font-bold mb-2">
                         Team Name:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -300,7 +307,7 @@ export default function Page() {
 
                     {/* Password */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-sm font-bold mb-2">
                         Password:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -323,7 +330,7 @@ export default function Page() {
 
                     {/* Profit/Loss */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-sm font-bold mb-2">
                         Profit/Loss:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -346,7 +353,7 @@ export default function Page() {
 
                     {/* Description */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-sm font-bold mb-2">
                         Description:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -369,7 +376,7 @@ export default function Page() {
 
                     {/* Total Money */}
                     <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
+                      <label className="block text-sm font-bold mb-2">
                         Total Money:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -391,7 +398,7 @@ export default function Page() {
                     </div>
 
                     <button
-                      className={`shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ${
+                      className={`shadow bg-yellow-500 hover:bg-yellow-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ${
                         isLoading ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                       type="submit"
