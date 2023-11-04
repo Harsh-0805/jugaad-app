@@ -16,83 +16,6 @@ import "./globals.css";
 import { Route } from "next";
 import Leaderboard from "@/components/leaderboard";
 
-// const data = [
-//   {
-//     rank: 1,
-//     teamName: "Team 1",
-//     totalProfits: 954,
-//   },
-//   {
-//     rank: 2,
-//     teamName: "Team 2",
-//     totalProfits: 630,
-//   },
-//   {
-//     rank: 3,
-//     teamName: "Team 3",
-//     totalProfits: 722,
-//   },
-//   {
-//     rank: 4,
-//     teamName: "Team 4",
-//     totalProfits: 506,
-//   },
-//   {
-//     rank: 5,
-//     teamName: "Team 5",
-//     totalProfits: 764,
-//   },
-//   {
-//     rank: 6,
-//     teamName: "Team 6",
-//     totalProfits: 506,
-//   },
-//   {
-//     rank: 7,
-//     teamName: "Team 7",
-//     totalProfits: 364,
-//   },
-//   {
-//     rank: 8,
-//     teamName: "Team 8",
-//     totalProfits: 81,
-//   },
-//   {
-//     rank: 9,
-//     teamName: "Team 9",
-//     totalProfits: 812,
-//   },
-//   {
-//     rank: 10,
-//     teamName: "Team 10",
-//     totalProfits: 471,
-//   },
-//   {
-//     rank: 11,
-//     teamName: "Team 11",
-//     totalProfits: 957,
-//   },
-//   {
-//     rank: 12,
-//     teamName: "Team 12",
-//     totalProfits: 188,
-//   },
-//   {
-//     rank: 13,
-//     teamName: "Team 13",
-//     totalProfits: 813,
-//   },
-//   {
-//     rank: 14,
-//     teamName: "Team 14",
-//     totalProfits: 18,
-//   },
-//   {
-//     rank: 15,
-//     teamName: "Team 15",
-//     totalProfits: 616,
-//   },
-// ];
 
 // import { promises as fs } from 'fs';
 
@@ -280,8 +203,8 @@ export default function Page() {
   if (isSubmitted) {
     return (
       <div className="flex background flex-col items-center">
-        <h1 className="text-white font-bold text-3xl mt-2">Leaderboard</h1>
-        <Leaderboard data={...data} />
+        <h1 className="text-white font-bold text-3xl mt-2">Registration successful</h1>
+        {/* <Leaderboard data={...data} /> */}
       </div>
     );
   }
