@@ -1,4 +1,5 @@
 import React from "react";
+import "../app/globals.css";
 
 type LeaderboardProps = {
   data: {
@@ -9,17 +10,25 @@ type LeaderboardProps = {
 };
 
 const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
+  data.sort((a, b) => {
+    return b.totalProfits - a.totalProfits;
+  });
+
+  data.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+
   return (
-    <div className="bg-white shadow-md rounded my-6">
+    <div className="h-screen text-white shadow-md rounded my-6">
       <table className="min-w-max w-full table-auto">
         <thead>
-          <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <tr className=" text-white uppercase text-sm leading-normal">
             <th className="py-3 px-6 text-left">Rank</th>
             <th className="py-3 px-6 text-left">Team name</th>
             <th className="py-3 px-6 text-center">Total profits</th>
           </tr>
         </thead>
-        <tbody className="text-gray-600 text-sm font-light">
+        <tbody className="text-white text-sm font-light">
           {data.slice(0, 10).map((item) => (
             <tr
               key={item.rank}
@@ -37,7 +46,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ data }) => {
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="white"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"

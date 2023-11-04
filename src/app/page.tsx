@@ -279,8 +279,8 @@ export default function Page() {
 
   if (isSubmitted) {
     return (
-      <div className="flex bg-white flex-col items-center">
-        <h1 className="text-black font-bold text-2xl mt-2">Leaderboard</h1>
+      <div className="flex background flex-col items-center">
+        <h1 className="text-white font-bold text-2xl mt-2">Leaderboard</h1>
         <Leaderboard data={...data} />
       </div>
     );
