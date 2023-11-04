@@ -14,7 +14,7 @@ import jugaad from "./jugaadnew.png";
 import Image from "next/image";
 import "./globals.css";
 import { Route } from "next";
-import Leaderboard from "@/components/leaderboard";
+// import Leaderboard from "@/components/leaderboard";
 
 
 // import { promises as fs } from 'fs';
