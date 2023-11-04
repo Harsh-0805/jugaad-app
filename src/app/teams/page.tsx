@@ -13,6 +13,7 @@ interface Team {
   imageLink: string;
   createdAt: string;
   description: string;
+  totalMoney: number;
 }
 
 const TeamsPage: React.FC = () => {
@@ -67,6 +68,7 @@ const TeamsPage: React.FC = () => {
             <thead>
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time (IST)</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">total money</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profit Loss</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">location</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">dicription</th>
@@ -77,6 +79,7 @@ const TeamsPage: React.FC = () => {
               {teamDataMap.get(teamName)?.map((team) => (
                 <tr key={team._id}>
                   <td className="px-6 py-4 whitespace-nowrap">{convertToIST(team.createdAt)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{team.totalMoney}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{team.profitLoss}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{team.location}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{team.description}</td>
