@@ -28,4 +28,5 @@ body {
 
 .background {
   background-image: url(./background.jpg);
+  height: 100vh;
 }

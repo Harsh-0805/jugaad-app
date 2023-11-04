@@ -1,41 +1,42 @@
-"use client";
+"use client"
 
 // pages/invalid-users.tsx
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 
 const refreshInvalidUsers = () => {
-  axios
-    .get("/api/verify") // Adjust the URL as needed
-    .then((response) => {
-      setInvalidUsers(response.data.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching invalid users:", error);
-    });
-};
+    axios
+      .get("/api/verify") // Adjust the URL as needed
+      .then((response) => {
+        setInvalidUsers(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching invalid users:", error);
+      });
+  };
 
-const markAsVerified = (userId: any) => {
-  console.log(userId);
-  // Send a POST request to update the user's isVerified property
-  axios
-    .post(`/api/update/${userId}`, null, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      // Refresh the list of invalid users
-      refreshInvalidUsers();
-    })
-    .catch((error) => {
-      console.error("Error marking as verified:", error);
-    });
-};
+  const markAsVerified = (userId: any) => {
+    console.log(userId);
+    // Send a POST request to update the user's isVerified property
+    axios
+      .post(`/api/update/${userId}`, null, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(() => {
+        // Refresh the list of invalid users
+        refreshInvalidUsers();
+      })
+      .catch((error) => {
+        console.error("Error marking as verified:", error);
+      });
+  };
 const InvalidUsersPage: React.FC = () => {
   const [invalidUsers, setInvalidUsers] = useState<any[]>([]);
+
+  
 
   useEffect(() => {
     // Make an HTTP GET request to fetch invalid users
@@ -70,13 +71,11 @@ const InvalidUsersPage: React.FC = () => {
               <td>{user.description}</td>
               <td>{user.createdAt}</td>
               <td>
-                {user.imageLink && (
-                  <Image src={user.imageLink} alt={user.teamName} />
-                )}
+                {user.imageLink && <img src={user.imageLink} alt={user.teamName} width={400}  height={300}  />}
               </td>
               <td>
                 <button onClick={() => markAsVerified(user._id)}>Verify</button>
-              </td>
+            </td>
             </tr>
           ))}
         </tbody>
@@ -87,5 +86,6 @@ const InvalidUsersPage: React.FC = () => {
 
 export default InvalidUsersPage;
 function setInvalidUsers(data: any) {
-  throw new Error("Function not implemented.");
+    throw new Error("Function not implemented.");
 }
+
