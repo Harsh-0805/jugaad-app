@@ -9,7 +9,8 @@ export async function POST(request: NextRequest | Request) {
     description,
     location,
     imageLink,
-    isVerified } = await request.json();
+    isVerified,
+    totalMoney, } = await request.json();
   
     try {
       await connectMongoDB();
@@ -22,7 +23,8 @@ export async function POST(request: NextRequest | Request) {
         description,
         location,
         imageLink ,
-        isVerified});
+        isVerified,
+      totalMoney, });
       await newUser.save();
   
       return NextResponse.json({ message: "User registered successfully" }, { status: 201 });

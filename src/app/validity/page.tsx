@@ -46,7 +46,7 @@ const markAsVerified = (userId: any) => {
     .then(() => {
       console.log("User verified successfully.");
       // Remove the user from the invalidUsers state
-      setInvalidUsers((prevInvalidUsers) =>
+      setInvalidUsers((prevInvalidUsers: any[]) =>
         prevInvalidUsers.filter((user) => user._id !== userId)
       );
     })
