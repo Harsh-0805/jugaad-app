@@ -156,13 +156,22 @@ export default function Page() {
         // });
         else {
           setValidationErrors({
-            teamName: "Team name and password do not match.",
+            teamName:"Team name and password do not match.",
             password: "Team name and password do not match.",
+            profitLoss: "",
+            description: "",
+            totalMoney: "",
+            imageLink: "",
           });
         }
       } else {
         setValidationErrors({
-          teamName: "Team name not found.",
+          teamName: "Team name and password do not match.",
+          password: "",
+          profitLoss: "",
+          description: "",
+          totalMoney: "",
+          imageLink: "",
         });
       }
     } catch (error) {
