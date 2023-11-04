@@ -2,13 +2,14 @@ import connectMongoDB from "../../../../libs/mongodb";
 import {User} from "../../../../models/user"; // Make sure to import the User model
 import { NextResponse } from "next/server";
 
-export async function POST(request: { json: () => PromiseLike<{ teamName: any; password: any; profitLoss: any; description: any; totalMoney: any;imageLink:any ;}> | { teamName: any; password: any; profitLoss: any; description: any; totalMoney: any;imageLink:any; }; }) {
+export async function POST(request: { json: () => PromiseLike<{ teamName: any; password: any; profitLoss: any; description: any; totalMoney: any;imageLink:any ;isValid:any;}> | { teamName: any; password: any; profitLoss: any; description: any; totalMoney: any;imageLink:any; isValid:any;}; }) {
     const {  teamName,
     password,
     profitLoss,
     description,
     totalMoney,
-    imageLink } = await request.json();
+    imageLink,
+  isValid } = await request.json();
   
     try {
       await connectMongoDB();
@@ -20,7 +21,8 @@ export async function POST(request: { json: () => PromiseLike<{ teamName: any; p
         profitLoss,
         description,
         totalMoney,
-        imageLink });
+        imageLink ,
+        isValid});
       await newUser.save();
   
       return NextResponse.json({ message: "User registered successfully" }, { status: 201 });

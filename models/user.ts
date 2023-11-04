@@ -7,6 +7,7 @@ interface IUser extends Document {
   description: string;
   totalMoney: string;
   imageLink:string;
+  isVerified: boolean;
   createdAt: Date;
   // Define other properties here
 }
@@ -39,6 +40,10 @@ const userSchema = new mongoose.Schema<IUser>({
     type: Date,
     default: Date.now,
   },
+  isVerified:{
+    type:Boolean,
+    default: false,
+  }
   // Define other properties here
 });
 

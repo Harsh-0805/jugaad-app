@@ -108,7 +108,7 @@ export default function Page() {
     // }
 
     try {
-      const response1 = await fetch('http://localhost:5000/api/teams');
+      const response1 = await fetch('https://jugaadecell.onrender.com/api/teams');
       
       if (!response1.ok) {
         throw new Error(`Error fetching teams: ${response1.statusText}`);
