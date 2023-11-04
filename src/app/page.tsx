@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import jugaad from "./jugaadnew.png";
 import Image from "next/image";
+import "./globals.css";
 
 // import { promises as fs } from 'fs';
 
@@ -204,8 +205,8 @@ export default function Page() {
   }
 
   return (
-    <div className="grid grid-cols-1 justify-center items-center m-6">
-      <div className="grid grid-cols-1 items-center m-6">
+    <div className="background bg-blend-luminosity bg-no-repeat bg-center bg-cover grid grid-cols-1 justify-center items-center">
+      <div className=" grid grid-cols-1 items-center m-6">
         <Image
           src={jugaad}
           alt="jugaad"
@@ -258,7 +259,7 @@ export default function Page() {
             upload image
           </button>
         </div>
-        {urls?.url && (
+        {/* {urls?.url && (
           <Link href={urls.url} target="_blank">
             URL
           </Link>
@@ -267,7 +268,7 @@ export default function Page() {
           <Link href={urls.thumbnailUrl} target="_blank">
             THUMBNAIL
           </Link>
-        )}
+        )} */}
         {/* Just a dummy form for demo purposes */}
         <div className="grid grid-cols-1 gap-2">
           <div>
@@ -398,7 +399,7 @@ export default function Page() {
                     </div>
 
                     <button
-                      className={`shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ${
+                      className={`shadow bg-orange-400 hover:bg-orange-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ${
                         isLoading ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                       type="submit"
