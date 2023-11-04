@@ -7,7 +7,7 @@ export async function POST(request: NextRequest | Request) {
     password,
     profitLoss,
     description,
-    totalMoney,
+    location,
     imageLink,
     isVerified } = await request.json();
   
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest | Request) {
         password,
         profitLoss,
         description,
-        totalMoney,
+        location,
         imageLink ,
         isVerified});
       await newUser.save();

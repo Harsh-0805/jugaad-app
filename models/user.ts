@@ -3,12 +3,13 @@ import mongoose, { Model, Document } from "mongoose";
 interface IUser extends Document {
   teamName: string;
   password: string;
-  profitLoss: string;
+  profitLoss: number;
   description: string;
-  totalMoney: string;
+  location: string;
   imageLink:string;
   isVerified: boolean;
   createdAt: Date;
+  totalMoney: number;
   // Define other properties here
 }
 
@@ -22,14 +23,14 @@ const userSchema = new mongoose.Schema<IUser>({
     required: true,
   },
   profitLoss: {
-    type: String,
+    type: Number,
     required: true,
   },
   description: {
     type: String,
     required: true,
   },
-  totalMoney: {
+  location: {
     type: String,
     required: true,
   },
@@ -43,6 +44,10 @@ const userSchema = new mongoose.Schema<IUser>({
   isVerified:{
     type:Boolean,
     default: false,
+  },
+  totalMoney:{
+    type:Number,
+    default:100,
   }
   // Define other properties here
 });

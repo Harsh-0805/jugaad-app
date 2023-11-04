@@ -12,9 +12,16 @@ export async function POST(request: Request, route: { params: { userId: string }
     if (!userId) {
       return NextResponse.json({ message: "Invalid user ID" }, { status: 400 });
     }
-
+    const user=await User.findById(userId)
     const updatedUser = await User.findByIdAndUpdate(userId, { isVerified: true });
-
+    if(user){
+    const maxTotalMoneyUser = await User.findOne({
+      teamName: user.teamName,
+      isVerified: true,
+    }).sort({ totalMoney: -1 });
+    if(maxTotalMoneyUser){
+      if(updatedUser){
+    updatedUser.totalMoney = maxTotalMoneyUser.totalMoney + updatedUser.profitLoss;}}}
     if (updatedUser) {
       return NextResponse.json({ message: "User marked as verified" }, { status: 200 });
     } else {

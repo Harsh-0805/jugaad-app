@@ -128,7 +128,7 @@ export default function Page() {
     password: "",
     profitLoss: "",
     description: "",
-    totalMoney: "",
+    location: "",
     imageLink: "",
   });
 
@@ -140,7 +140,7 @@ export default function Page() {
     password: "",
     profitLoss: "",
     description: "",
-    totalMoney: "",
+    location: "",
     imageLink: "",
   });
 
@@ -177,7 +177,7 @@ export default function Page() {
       password: "",
       profitLoss: "",
       description: "",
-      totalMoney: "",
+      location: "",
       imageLink: "",
     });
 
@@ -243,7 +243,7 @@ export default function Page() {
             password: "Team name and password do not match.",
             profitLoss: "",
             description: "",
-            totalMoney: "",
+            location: "",
             imageLink: "",
           });
         }
@@ -253,7 +253,7 @@ export default function Page() {
           password: "",
           profitLoss: "",
           description: "",
-          totalMoney: "",
+          location: "",
           imageLink: "",
         });
       }
@@ -463,22 +463,22 @@ export default function Page() {
                     {/* Total Money */}
                     <div className="mb-4">
                       <label className="block text-white text-sm font-bold mb-2">
-                        Total Money:
+                        Location:
                         <input
                           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                            validationErrors.totalMoney ? "border-red-500" : ""
+                            validationErrors.location ? "border-red-500" : ""
                           }`}
                           type="text"
-                          name="totalMoney"
-                          placeholder="Total Money"
-                          value={formData.totalMoney}
+                          name="location"
+                          placeholder="Location"
+                          value={formData.location}
                           onChange={handleChange}
                           required
                         />
                       </label>
-                      {validationErrors.totalMoney && (
+                      {validationErrors.location && (
                         <p className="text-red-500 text-xs italic">
-                          {validationErrors.totalMoney}
+                          {validationErrors.location}
                         </p>
                       )}
                     </div>
