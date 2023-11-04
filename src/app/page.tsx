@@ -9,7 +9,7 @@ import {
 import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import Link from "next/link";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // import { promises as fs } from 'fs';
 
@@ -46,7 +46,7 @@ export default function Page() {
     profitLoss: "",
     description: "",
     totalMoney: "",
-    imageLink:"",
+    imageLink: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +58,7 @@ export default function Page() {
     profitLoss: "",
     description: "",
     totalMoney: "",
-    imageLink:"",
+    imageLink: "",
   });
 
   const [teams, setTeams] = useState([]);
@@ -75,7 +75,7 @@ export default function Page() {
   // }, []);
   // console.log(teams)
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -83,19 +83,19 @@ export default function Page() {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     setIsLoading(true);
 
     // Reset previous validation errors
     setValidationErrors({
-    teamName: "",
-    password: "",
-    profitLoss: "",
-    description: "",
-    totalMoney: "",
-    imageLink:"",
+      teamName: "",
+      password: "",
+      profitLoss: "",
+      description: "",
+      totalMoney: "",
+      imageLink: "",
     });
 
     // if (!verifyTeamNameAndPassword(formData.teamName, formData.password)) {
@@ -108,56 +108,59 @@ export default function Page() {
     // }
 
     try {
-      const response1 = await fetch('https://jugaadecell.onrender.com/api/teams');
-      
+      const response1 = await fetch(
+        "https://jugaadecell.onrender.com/api/teams"
+      );
+
       if (!response1.ok) {
         throw new Error(`Error fetching teams: ${response1.statusText}`);
       }
       const data = await response1.json();
-      console.log("yo1")
-      console.log(data.data[formData.teamName] )
-      console.log("yo2")
-      console.log( data.data[formData.teamName].password)
-      console.log("yo3")
-      console.log(formData.password)
-      console.log("yo4")
+      console.log("yo1");
+      console.log(data.data[formData.teamName]);
+      console.log("yo2");
+      console.log(data.data[formData.teamName].password);
+      console.log("yo3");
+      console.log(formData.password);
+      console.log("yo4");
       // console.log(`${formData.teamName} ${data[formData.teamName].password} ${formData.password}`)
       // console.log("yo5")
       // Check if the team name and password match
-      if(data.data[formData.teamName]){
-        console.log("yo42")
-      if (data.data[formData.teamName].password == formData.password) {
-        console.log("yo45")
-        const response = await fetch("/api/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-          
-        });
-      if (response.status === 201) {
-        const data = await response.json();
-        console.log("User registered:", data.user);
-        setIsSubmitted(true);
-      } else if (response.status === 400) {
-        const data = await response.json();
-        if (data.errors) {
-          // Set validation error messages based on the server response
-          setValidationErrors(data.errors);
+      if (data.data[formData.teamName]) {
+        console.log("yo42");
+        if (data.data[formData.teamName].password == formData.password) {
+          console.log("yo45");
+          const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+          if (response.status === 201) {
+            const data = await response.json();
+            console.log("User registered:", data.user);
+            setIsSubmitted(true);
+          } else if (response.status === 400) {
+            const data = await response.json();
+            if (data.errors) {
+              // Set validation error messages based on the server response
+              setValidationErrors(data.errors);
+            }
+          } else {
+            console.error("Registration failed:", response.statusText);
+          }
+        }
+        // await edgestore.myPublicImages.upload({  // Use myPublicImages here
+        //   file,
+        // });
+        else {
+          setValidationErrors({
+            teamName: "Team name and password do not match.",
+            password: "Team name and password do not match.",
+          });
         }
       } else {
-        console.error("Registration failed:", response.statusText);
-      }}
-      // await edgestore.myPublicImages.upload({  // Use myPublicImages here
-      //   file,
-      // });
-      else{
-        setValidationErrors({
-          teamName: "Team name and password do not match.",
-          password: "Team name and password do not match.",
-        });
-      }}else{
         setValidationErrors({
           teamName: "Team name not found.",
         });
@@ -190,68 +193,71 @@ export default function Page() {
   }
 
   return (
-    <div className="flex flex-row items-center m-6">
-      <div className="flex gap-4">
-      <SingleImageDropzone
-        width={200}
-        height={200}
-        value={file}
-        dropzoneOptions={{
-          maxSize: 1024 * 1024 * 1, // 1MB
-        }}
-        onChange={(file) => {
-          setFile(file);
-        }}
-      />
-      <div className="h-[6px] w-44 border rounded overflow-hidden">
-        <div
-          className="h-full bg-white transition-all duration-150"
-          style={{
-            width: `${progress}%`,
-          }}
-        />
-      </div>
-      <button
-        className="bg-white text-black rounded px-2 hover:opacity-80"
-        onClick={async () => {
-          if (file) {
-            const res = await edgestore.myPublicImages.upload({
-              file,
-              input: { type: "post" },
-              onProgressChange: (progress) => {
-                setProgress(progress);
-              },
-            });
-            // save your data here
-            setUrls({
-              url: res.url,
-              thumbnailUrl: res.thumbnailUrl,
-            });
-            setFormData({
-              ...formData,
-              imageLink: res.url,
-            });
-          }
-        }}
-      >upload image</button>
-      {urls?.url && (
-        <Link href={urls.url} target="_blank">
-          URL
-        </Link>
-      )}
-      {urls?.thumbnailUrl && (
-        <Link href={urls.thumbnailUrl} target="_blank">
-          THUMBNAIL
-        </Link>
-      )}
+    <div className="grid grid-cols-1 justify-center items-center m-6">
+      <div className="gap-4 justify-center items-center">
+        <div className="justify-center text-center items-center">
+          <SingleImageDropzone
+            width={200}
+            height={200}
+            value={file}
+            dropzoneOptions={{
+              maxSize: 1024 * 1024 * 1, // 1MB
+            }}
+            onChange={(file) => {
+              setFile(file);
+            }}
+            className="justify-center items-center my-2"
+          />
+          <div className="h-[6px] justify-center items-center w-44 border rounded overflow-hidden my-2">
+            <div
+              className="h-full bg-white transition-all duration-150"
+              style={{
+                width: `${progress}%`,
+              }}
+            />
+          </div>
+          <button
+            className="bg-white mb-2 text-black rounded px-2 hover:opacity-80"
+            onClick={async () => {
+              if (file) {
+                const res = await edgestore.myPublicImages.upload({
+                  file,
+                  input: { type: "post" },
+                  onProgressChange: (progress) => {
+                    setProgress(progress);
+                  },
+                });
+                // save your data here
+                setUrls({
+                  url: res.url,
+                  thumbnailUrl: res.thumbnailUrl,
+                });
+                setFormData({
+                  ...formData,
+                  imageLink: res.url,
+                });
+              }
+            }}
+          >
+            upload image
+          </button>
+        </div>
+        {urls?.url && (
+          <Link href={urls.url} target="_blank">
+            URL
+          </Link>
+        )}
+        {urls?.thumbnailUrl && (
+          <Link href={urls.thumbnailUrl} target="_blank">
+            THUMBNAIL
+          </Link>
+        )}
         {/* Just a dummy form for demo purposes */}
-        <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-1 gap-2">
           <div>
             {isSubmitted ? (
               <>
-                <div>
-                  success
-                </div>
+                <div>success</div>
               </>
             ) : (
               <>
@@ -380,7 +386,7 @@ export default function Page() {
                         isLoading ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                       type="submit"
-                      disabled={isLoading||progress!=100}
+                      disabled={isLoading || progress != 100}
                       // disabled={}
                       onClick={handleSubmit}
                     >
@@ -408,8 +414,10 @@ export default function Page() {
                           </svg>
                           Loading...
                         </>
+                      ) : progress != 100 ? (
+                        "upload image first"
                       ) : (
-                        (progress!=100)?("upload image first"):("submit")
+                        "submit"
                       )}
                     </button>
                   </form>
@@ -417,10 +425,7 @@ export default function Page() {
               </>
             )}
           </div>
-          <div className="flex justify-end mt-2 gap-2">
-            
-            
-          </div>
+          <div className="flex justify-end mt-2 gap-2"></div>
         </div>
       </div>
     </div>
