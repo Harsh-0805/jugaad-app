@@ -10,6 +10,8 @@ import { SingleImageDropzone } from "@/components/single-image-dropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import jugaad from "./jugaadnew.png";
+import Image from "next/image";
 
 // import { promises as fs } from 'fs';
 
@@ -156,7 +158,7 @@ export default function Page() {
         // });
         else {
           setValidationErrors({
-            teamName:"Team name and password do not match.",
+            teamName: "Team name and password do not match.",
             password: "Team name and password do not match.",
             profitLoss: "",
             description: "",
@@ -203,7 +205,12 @@ export default function Page() {
 
   return (
     <div className="grid grid-cols-1 justify-center items-center m-6">
-      <div className="gap-4 justify-center items-center">
+      <div className="grid grid-cols-1 items-center m-6">
+        <Image
+          src={jugaad}
+          alt="jugaad"
+          className="items-center justify-center"
+        />
         <div className="justify-center text-center items-center">
           <SingleImageDropzone
             width={200}
@@ -215,9 +222,9 @@ export default function Page() {
             onChange={(file) => {
               setFile(file);
             }}
-            className="justify-center items-center my-2"
+            className="justify-center left-[22%] items-center my-2"
           />
-          <div className="h-[6px] justify-center items-center w-44 border rounded overflow-hidden my-2">
+          <div className="h-[6px] border rounded overflow-hidden my-2">
             <div
               className="h-full bg-white transition-all duration-150"
               style={{
