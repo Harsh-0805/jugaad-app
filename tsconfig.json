@@ -1,27 +1,30 @@
 {
   "compilerOptions": {
     "target": "es6", // or "es2015" or higher
-    "downlevelIteration": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "downlevelIteration": true
+    // ... other compiler options
+    ,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
+    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -30,10 +33,7 @@
     ".next/types/**/*.ts",
     "libs/mongodb.js"
   ],
-  "exclude": ["node_modules"],
-  "compilerOptions": {
-    "target": "es6", // or "es2015" or higher
-    "downlevelIteration": true
-    // ... other compiler options
-  }
+  "exclude": [
+    "node_modules"
+  ]
 }
