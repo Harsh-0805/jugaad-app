@@ -14,6 +14,7 @@ import jugaad from "./jugaadnew.png";
 import Image from "next/image";
 import "./globals.css";
 import { Route } from "next";
+import { useRouter } from "next/navigation";
 // import Leaderboard from "@/components/leaderboard";
 
 // import { promises as fs } from 'fs';
@@ -40,10 +41,14 @@ export default function Page() {
   const { edgestore } = useEdgeStore();
   const [file, setFile] = useState<File>();
   const [progress, setProgress] = useState(0);
+  const router = useRouter();
   const [urls, setUrls] = useState<{
     url: string;
     thumbnailUrl: string | null;
   }>();
+  // const handleRefresh = () => {
+  //   router.push();
+  // };
   // const { edgestore } = useEdgeStore();
   const [formData, setFormData] = useState({
     teamName: "",
@@ -201,13 +206,13 @@ export default function Page() {
 
   if (isSubmitted) {
     return (
-      <div className="flex background h-screen flex-col items-center">
+      <div className="h-screen flex background top-1/2 justify-center flex-col  items-center">
         <h1 className="text-white font-bold text-3xl mt-2">
-          Registration successful
+        Successfully submitted
         </h1>
-        <button className="shadow bg-orange-400 hover:bg-orange-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ">
-          <a href="/leader">Leaderboard</a>
-        </button>
+        <h1 className="text-white font-bold text-lg mt-2">
+          Regresh the page to submit another form
+        </h1>
         {/* <Leaderboard data={...data} /> */}
       </div>
     );
