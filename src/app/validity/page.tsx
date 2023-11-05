@@ -49,6 +49,7 @@ const markAsVerified = (userId: any) => {
       setInvalidUsers((prevInvalidUsers: any[]) =>
         prevInvalidUsers.filter((user) => user._id !== userId)
       );
+      refreshInvalidUsers();
     })
     .catch((error) => {
       console.error("Error marking as verified:", error);
